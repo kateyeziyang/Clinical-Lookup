@@ -11,9 +11,21 @@ docPATH2 = "./Model Files/unprocessed_corpus_2.json"
 keybert_docPATH = "./Model Files/keybert_corpus.json"
 simple_docPATH = "./Model Files/simple_corpus_1.json"
 simple_docPATH2 = "./Model Files/simple_corpus_2.json"
+summaries_PATH = "./Model Files/brief_summaries.json"
 # topicPATH = "./topic.json"
 # keyber_bm25_resultPATH = "./keybert_bm25.json" 
 # simple_bm25_resultPATH = "./simple_bm25.json"
+
+def get_summaries(nids):
+    if os.path.exists(summaries_PATH):
+        with open(summaries_PATH,"r") as input:
+            summaries = json.load(input)
+        result = []
+        for nid in nids:
+            result.append(summaries[nid])
+        return result
+    else:
+        print("Please check if ./Model Files/brief_summaries.json exists.")
 
 def simple_bm25(query):
     """
@@ -41,19 +53,17 @@ def simple_bm25(query):
         return
 
     bm25 = BM25Okapi(tokenized_corpus)
-    simple_bm25 = {}
     # for query in queries:
     tokenized_query = re.sub(r'[^\w\s]', '', query).split(" ")
-    doc_scores = bm25.get_scores(tokenized_query)
-    indices = list(np.argsort(doc_scores)[-5:][::-1])
-    top_n_docs = [corpus[idx] for idx in indices]
-    top_scores = [doc_scores[idx] for idx in indices]
-    simple_bm25[query] = [top_scores, top_n_docs]
-    nids = [s[:11] for s in (simple_bm25[query])[1]]
-    return nids
-
-
-
+    top_n_docs = bm25.get_top_n(tokenized_query,corpus,5)
+    result = []
+    nids = []
+    for doc in top_n_docs:
+        nids.append(doc[:11])
+    summaries = get_summaries(nids)
+    for nid,summary in zip(nids,summaries):
+        result.append([nid,summary])
+    return result
 
 def keybert_bm25(query):
     """
@@ -79,15 +89,13 @@ def keybert_bm25(query):
 
 
     bm25 = BM25Okapi(tokenized_corpus)
-    keybert_bm25 = {}
-
-    # for query in queries:
     tokenized_query = re.sub(r'[^\w\s]', '', query).split(" ")
-    # top_n_result = bm25.get_top_n(tokenized_query, corpus, n=5)
-    doc_scores = bm25.get_scores(tokenized_query)
-    indices = list(np.argsort(doc_scores)[-5:][::-1])
-    top_n_docs = [corpus[idx] for idx in indices]
-    top_scores = [doc_scores[idx] for idx in indices]
-    keybert_bm25[query] = [top_scores,top_n_docs]
-    nids = [s[:11] for s in (keybert_bm25[query])[1]]
-    return nids
+    top_n_docs = bm25.get_top_n(tokenized_query,corpus,5)
+    result = []
+    nids = []
+    for doc in top_n_docs:
+        nids.append(doc[:11])
+    summaries = get_summaries(nids)
+    for nid,summary in zip(nids,summaries):
+        result.append([nid,summary])
+    return result
