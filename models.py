@@ -1,9 +1,7 @@
 import os
 import xml.etree.ElementTree as ET
 import json, re
-import numpy as np
 from rank_bm25 import BM25Okapi
-from keybert import KeyBERT
 
 # I have to break down corpus to two files because of Github's file size limit
 docPATH = "./Model Files/unprocessed_corpus_1.json"
