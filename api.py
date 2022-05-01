@@ -20,7 +20,7 @@ def rank_bm25():
     result = simple_bm25(query)
     print(result)
 
-    return jsonify(result)
+    return jsonify(result),201
 
 
 @app.route('/keybert', methods=['POST'])
@@ -36,7 +36,21 @@ def rank_keybert():
     result = keybert_bm25(query)
     print(result)
 
-    return jsonify(result)
+    return jsonify(result),201
 
+
+@app.after_request
+def after_request(response):
+    """
+    @https://github.com/corydolphin/flask-cors/issues/200
+    To solve connection blocked by cors
+    :param response:
+    :return:
+    """
+    response.headers.add('Access-Control-Allow-Origin', 'http://localhost:3000')
+    response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
+    response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
+    response.headers.add('Access-Control-Allow-Credentials', 'true')
+    return response
 
 app.run(debug=True)
