@@ -7,7 +7,7 @@ import Card from '@mui/material/Card';
 
 
 const Output = (props) => {
-  const {doc} = props;
+  const {doc, isloading} = props;
 
 
   const style = {
@@ -53,32 +53,53 @@ const Output = (props) => {
         </Box>
     </Modal>
   )
+  if (isloading === false) {
+    return (
+      <Box
+      sx={{
+        display: 'flex',
+        flexWrap: 'wrap',
+        '& > :not(style)': {
+          m: 1,
+          width: '70vw',
+          height: '90vh',
+        },
+      }}
+    >
+      <Paper elevation={3}>
   
-  return (
-    <Box
-    sx={{
-      display: 'flex',
-      flexWrap: 'wrap',
-      '& > :not(style)': {
-        m: 1,
-        width: '70vw',
-        height: '90vh',
-      },
-    }}
-  >
-    <Paper elevation={3}>
-
-      {
-        doc?.map((e,i) => {
-          return(
-            <SingleCard content={e} key ={i} />
-          );
-        })
-      }
-
-    </Paper>
-  </Box>
-  );
+        {
+          doc?.map((e,i) => {
+            return(
+              <SingleCard content={e} key ={i} />
+            );
+          })
+        }
+  
+      </Paper>
+    </Box>
+    );
+  }else {
+    return (
+      <Box
+      sx={{
+        display: 'flex',
+        flexWrap: 'wrap',
+        '& > :not(style)': {
+          m: 1,
+          width: '70vw',
+          height: '90vh',
+        },
+      }}
+    >
+      <Paper elevation={3}>
+  
+        Loading...
+      </Paper>
+    </Box>
+    );
+  }
+ 
 }
 
 export default Output;

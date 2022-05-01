@@ -9,8 +9,10 @@ const Home = () => {
   const [doc, setDoc] = useState();
   const [data, setData] = useState({})
   const [url, setUrl] = useState("");
+  const [isloading, setIsloading] = useState(false);
 
   useEffect(() => {
+    setIsloading(true);
     fetch(url, {
       method: 'POST',
       headers: {
@@ -24,6 +26,7 @@ const Home = () => {
     }).then(data => {
       console.log(data)
       setDoc(data);
+      setIsloading(false);
     })
   }, [url, data])
 
@@ -33,7 +36,7 @@ const Home = () => {
         <Input topic={topic} setTopic={setTopic} setUrl={setUrl} setData={setData}/>
       </div>
       <div className='HomeContainer'>
-        <Output doc={doc} />
+        <Output doc={doc} isloading={isloading} />
       </div>
     </>
 
