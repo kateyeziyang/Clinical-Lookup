@@ -1,9 +1,7 @@
 import os
 import xml.etree.ElementTree as ET
 import json, re
-import numpy as np
 from rank_bm25 import BM25Okapi
-from keybert import KeyBERT
 
 # I have to break down corpus to two files because of Github's file size limit
 docPATH = "./Model Files/unprocessed_corpus_1.json"
@@ -29,7 +27,8 @@ def get_summaries(nids):
 
 def simple_bm25(query):
     """
-    Given a string (query), return a list of nct_id of the top 5 relevant documents with simple word embedding.
+    Given a string (query), return a list of five list. The returned list looks like [[nct_id1, brief_summary1],...[nct_id5, brief_summary5]].
+    Word embedding method is simple.
     """
 
     if os.path.exists(docPATH) and os.path.exists(docPATH2):
@@ -67,7 +66,8 @@ def simple_bm25(query):
 
 def keybert_bm25(query):
     """
-    Given a string (query), return a list of nct_id of the top 5 relevant documents with KeyBERT word embedding.
+    Given a string (query), return a list of five list. The returned list looks like [[nct_id1, brief_summary1],...[nct_id5, brief_summary5]].
+    Word embedding method is KeyBERT.
     """
     if os.path.exists(docPATH) and os.path.exists(docPATH2):
         # print("load doc directly")
