@@ -1,0 +1,12 @@
+.HomeContainer {
+  display:flex;
+  justify-content:center;
+  align-items: center;
+}
+
+
+.SubmitButton {
+  display: inline-block;
+  padding-top: 12px;
+  padding-left: 10px;
+}
