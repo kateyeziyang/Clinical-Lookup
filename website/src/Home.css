@@ -4,6 +4,12 @@
   align-items: center;
 }
 
+.Title {
+  display:flex;
+  justify-content:center;
+  align-items: center;
+  font-family: 'Times New Roman', serif;
+}
 
 .SubmitButton {
   display: inline-block;
@@ -15,4 +21,23 @@
   display: inline-block;
   padding-top: 16px;
   padding-left: 10px;
+}
+
+.App {
+  background-image:url("https://www.outsourcing-pharma.com/var/wrbm_gb_food_pharma/storage/images/_aliases/wrbm_large/publications/pharmaceutical-science/outsourcing-pharma.com/article/2019/05/28/england-sees-highest-ever-clinical-trial-participation-rates-nihr/9521906-1-eng-GB/England-sees-highest-ever-clinical-trial-participation-rates-NIHR.jpg"),
+                   url("https://images.everydayhealth.com/images/wellness/the-consumers-guide-to-clinical-trials-722x406.jpg?w=1110"),
+                   url("https://blogs.biomedcentral.com/on-medicine/wp-content/uploads/sites/6/2020/05/iStock-1137422696.t5dfa48d8.m1200.eps_.pv_.x8oCyoiw7-620x342.jpg"); 
+  background-repeat: repeat-x, repeat-x, repeat-x;
+  background-position: top, 60% 78%, 50% 120%;
+  height:100vh;
+}
+
+.InputForm {
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+}
+
+.stars {
+  float: right;
 }

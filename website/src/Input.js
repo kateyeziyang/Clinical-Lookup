@@ -2,6 +2,8 @@ import React, {useState} from 'react';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import NativeSelect from '@mui/material/NativeSelect';
+import Paper from '@mui/material/Paper';
+import { Box } from '@mui/system';
 import './Home.css'
 
 
@@ -29,20 +31,31 @@ const Input = (props) => {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <TextField id="standard-basic" label="Topics" variant="standard" onChange={handleChange}/>
-      <div className='Switch'>
-        <NativeSelect defaultValue='bm25' onChange={handleSwitch}>
-          <option value='bm25'>BM_25</option>
-          <option value='keybert'>KeyBert</option>
-        </NativeSelect>
-      </div>
-      <div className='SubmitButton'>
-        <Button type='submit' variant='outlined'>
-          Submit
-        </Button>
-      </div>
-    </form>
+    <Box sx={{
+      display: 'flex',
+      flexWrap: 'wrap',
+      '& > :not(style)': {
+        m: 1,
+        width: '30vw',
+      },
+    }}>
+      <Paper elevation={3}>
+        <form  className='InputForm' onSubmit={handleSubmit}>
+          <TextField id="standard-basic" label="Topics" variant="standard" onChange={handleChange} />
+          <div className='Switch'>
+            <NativeSelect defaultValue='bm25' onChange={handleSwitch} variant='contained'>
+              <option value='bm25'>BM_25</option>
+              <option value='keybert'>KeyBert + BM_25</option>
+            </NativeSelect>
+          </div>
+          <div className='SubmitButton'>
+            <Button type='submit' variant='outlined'>
+              Submit
+            </Button>
+          </div>
+        </form>
+      </Paper>
+    </ Box>
   );
 }
 

@@ -10,6 +10,11 @@ const Home = () => {
   const [data, setData] = useState({})
   const [url, setUrl] = useState("");
   const [isloading, setIsloading] = useState(false);
+  const [warning, setWarning] = useState(true);
+
+  // useEffect(() => {
+  //   alert("result might be inaccurate due to the mistakes made by models")
+  // },[])
 
   useEffect(() => {
     setIsloading(true);
@@ -32,11 +37,12 @@ const Home = () => {
 
   return (
     <>
+      <h1 className='Title'>Clinical LookUp</h1>
       <div className='HomeContainer'>
         <Input topic={topic} setTopic={setTopic} setUrl={setUrl} setData={setData}/>
       </div>
       <div className='HomeContainer'>
-        <Output doc={doc} isloading={isloading} />
+        <Output doc={doc} isloading={isloading} warning={warning} setWarning={setWarning} />
       </div>
     </>
 
