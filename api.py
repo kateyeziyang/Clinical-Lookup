@@ -20,7 +20,6 @@ def rank_bm25():
 
     query = json.loads(request.data)["topic"]
     result = simple_bm25(query)
-    print(result)
 
     return jsonify(result), 201
 
@@ -36,7 +35,6 @@ def rank_keybert():
 
     query = json.loads(request.data)["topic"]
     result = keybert_bm25(query)
-    print(result)
 
     return jsonify(result), 201
 
@@ -63,7 +61,7 @@ def search():
     elif gender:
         where = {'gender': gender}
     result = lookup_db(where=where)
-
+    print(result)
     return jsonify(result), 201
 
 

@@ -23,6 +23,12 @@
   padding-left: 10px;
 }
 
+.SearchSwitch{
+  display:flex;
+  justify-content:center;
+  align-items: center;
+}
+
 .App {
   background-image:url("https://www.outsourcing-pharma.com/var/wrbm_gb_food_pharma/storage/images/_aliases/wrbm_large/publications/pharmaceutical-science/outsourcing-pharma.com/article/2019/05/28/england-sees-highest-ever-clinical-trial-participation-rates-nihr/9521906-1-eng-GB/England-sees-highest-ever-clinical-trial-participation-rates-NIHR.jpg"),
                    url("https://images.everydayhealth.com/images/wellness/the-consumers-guide-to-clinical-trials-722x406.jpg?w=1110"),

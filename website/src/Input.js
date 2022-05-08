@@ -43,7 +43,7 @@ const Input = (props) => {
         <form  className='InputForm' onSubmit={handleSubmit}>
           <TextField id="standard-basic" label="Topics" variant="standard" onChange={handleChange} />
           <div className='Switch'>
-            <NativeSelect defaultValue='bm25' onChange={handleSwitch} variant='contained'>
+            <NativeSelect defaultValue='bm25' onChange={handleSwitch}>
               <option value='bm25'>BM_25</option>
               <option value='keybert'>KeyBert + BM_25</option>
             </NativeSelect>
