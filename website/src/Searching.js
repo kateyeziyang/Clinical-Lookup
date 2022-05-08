@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import SearchBar from './SearchBar';
 import SearchResult from './SearchResult';
+import fetch from './fetchWithTimeout';
 
 export default function Searching (props) {
   const [doc, setDoc] = useState();
@@ -14,9 +15,12 @@ export default function Searching (props) {
         if (response.ok) {
           return response.json()
         }
-      }).then(data => {
+      },15000).then(data => {
         console.log(data)
         setDoc(data);
+        setIsloading(false);
+      }).catch(error => {
+        console.log(error);
         setIsloading(false);
       })
     }

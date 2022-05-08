@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import NativeSelect from '@mui/material/NativeSelect';
 import Paper from '@mui/material/Paper';
 import { Box } from '@mui/system';
 import './Home.css'
@@ -29,7 +30,7 @@ const SearchBar = (props) => {
     setId(e.target.value);
   }
 
-  const handleGenderChange = (e) => {
+  const handleSwitch = (e) => {
     setGender(e.target.value);
   }
 
@@ -45,7 +46,14 @@ const SearchBar = (props) => {
       <Paper elevation={3}>
         <form  className='InputForm' onSubmit={handleSubmit}>
           <TextField id="standard-basic" label="ID" variant="standard" onChange={handleIDChange} />
-          <TextField id="standard-basic" label="Gender" variant="standard" onChange={handleGenderChange} />
+          <div className='Switch'>
+            <NativeSelect defaultValue='Any' onChange={handleSwitch}>
+              <option value='Any'>Any</option>
+              <option value='All'>All</option>
+              <option value='Female'>Female</option>
+              <option value='Male'>Male</option>
+            </NativeSelect>
+          </div>
           <div className='SubmitButton'>
             <Button type='submit' variant='outlined'>
               Submit

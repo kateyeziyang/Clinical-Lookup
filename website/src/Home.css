@@ -47,3 +47,11 @@
 .stars {
   float: right;
 }
+
+.ErrorWrapper{
+  display:flex;
+  align-items: center;
+  position: absolute;
+  left:47%;
+  top:40%;
+}

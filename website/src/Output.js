@@ -6,6 +6,7 @@ import Modal from '@mui/material/Modal';
 import Card from '@mui/material/Card';
 import LoadingSpinner from './LoadingSpinner';
 import Relevancy from './Relevancy';
+import Error from './Error';
 import './Home.css';
 
 const Output = (props) => {
@@ -97,6 +98,10 @@ const Output = (props) => {
     </Modal>
   )
 
+  if (doc === null || doc === undefined || doc.length === 0) {
+
+  }
+
   return (
     <Box
     sx={{
@@ -112,7 +117,7 @@ const Output = (props) => {
     <Paper elevation={3}>
 
       {
-        doc?.map((e,i) => {
+        doc === undefined ? <Error /> : doc.map((e,i) => {
           return(
             <SingleCard content={e} key={i} idx={i} />
           );

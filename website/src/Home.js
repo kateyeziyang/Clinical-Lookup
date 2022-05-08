@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import Input from './Input';
 import Output from './Output';
+import fetch from './fetchWithTimeout';
 import './Home.css';
 
 const Home = () => {
@@ -21,13 +22,16 @@ const Home = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(data)
-      }).then(response => {
+      },20000).then(response => {
         if (response.ok) {
           return response.json()
         }
       }).then(data => {
         console.log(data)
         setDoc(data);
+        setIsloading(false);
+      }).catch(error => {
+        console.log(error);
         setIsloading(false);
       })
     }

@@ -5,6 +5,7 @@ import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import Card from '@mui/material/Card';
 import LoadingSpinner from './LoadingSpinner';
+import Error from './Error';
 import './Home.css';
 
 const SearchResult = (props) => {
@@ -95,7 +96,7 @@ const SearchResult = (props) => {
     <Paper elevation={3} style={{overflow:'auto'}}>
 
       {
-        doc?.map((e,i) => {
+        doc === undefined ? <Error /> : doc.map((e,i) => {
           return(
             <SingleCard content={e} key={i} idx={i} />
           );
