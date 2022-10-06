@@ -1,5 +1,8 @@
 # Clinical Lookup
 
+Final project of Text Retrieval course.
+Basically, the code trained a language model based on given clinical trials downloaded from the Internet. The model will recommand best relevant trials given some text.
+
 To run models.py, you have to install the python package rank_bm25. Install it with
 ```
 pip install rank-bm25
